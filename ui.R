@@ -17,7 +17,13 @@ page_one <- tabPanel("Introduction",
                              br(),
                              
                              p("This dataset includes the shapefile used to create the interactive map of Seattle."),
-                             (tags$a(href="http://data-seattlecitygis.opendata.arcgis.com/datasets/micro-community-policing-plans","Seattle Shapefile")))
+                             (tags$a(href="http://data-seattlecitygis.opendata.arcgis.com/datasets/micro-community-policing-plans","Seattle Shapefile")),
+                             br(),
+                             br(),
+                             br(),
+                             p("Created By:"),
+                             (tags$a(href="https://www.linkedin.com/in/roymosby/","Roy Mosby")))
+                           
                              
                          ),
                          mainPanel(
@@ -50,28 +56,8 @@ page_one <- tabPanel("Introduction",
                     
 
 
-                    
-                  
 
-# page_two <- tabPanel("Top 10 Highest Occurring Crime",
-#                      sidebarLayout(
-#                        sidebarPanel(
-#                          selectInput("year",label = h3("Select Year"),
-#                                      choices = c("2008","2009","2010", "2011", "2012", "2013", "2014", "2015", "2016",
-#                                                   "2017", "2018","2019") ,
-#                                      selected = "2016")
-#                          
-#                        ),
-#                      mainPanel(
-#                        plotOutput("crime"),
-#                        h1("Research Question"),
-#                        h1("Background"),
-#                        h1("Results")
-#                        
-#                      )))
-
-
-page_three <- tabPanel("Crime Type vs Precinct",
+page_two <- tabPanel("Crime Type vs Precinct",
                        h1("Crime Sorted by Precinct"),
                        p("The interactive boxplot analyzes and displays the distribution of the total crimes reported by 
                          each police precinct in Seattle based on yearly reports. The crimes types chosen are the 15 
@@ -113,7 +99,7 @@ page_three <- tabPanel("Crime Type vs Precinct",
                        )))
         
 
-page_four <- tabPanel("Seattle Neighborhoods",
+page_three <- tabPanel("Seattle Neighborhoods",
                       h1("Crime Sorted by Neighborhoods"),
                       p("The interactive bar plot shows the caparisons between crimes being committed by month. Users 
                         are able to filter by Neighborhood and Year. In addition, there is a heat map below which shows 
@@ -154,8 +140,14 @@ page_four <- tabPanel("Seattle Neighborhoods",
                         )
                       ))
 
-page_five <- tabPanel("Crime Rates by Decade",
+page_four <- tabPanel("Crime Rates by Decade",
                       h1("Crime Sorted by Category"),
+                      p("The interactive line graph compares the categories of crimes from 2008 – 2019. Users are able to 
+                        select which categories they want to compare. There are 3 main categories of crime which consist 
+                        of the following: society, property, and person. Examples of society crime would be DUI’s and
+                        Drug/Narcotic offenses. Several examples of property crime would be shoplifting, larceny theft 
+                        and robbery. Finally, person crimes would consist of kidnapping/abduction and sex offenses. 
+                        "),
                       sidebarLayout(
                         sidebarPanel(
                           checkboxGroupInput("line", label = h3("Select Crime Category"), 
@@ -166,16 +158,30 @@ page_five <- tabPanel("Crime Rates by Decade",
                         mainPanel(
                           plotlyOutput("linegraph"),
                           h1("Background"),
+                          p("During my research I was curious about how crimes are categorized. I was interested in 
+                             learning about which category of crime was most prevalent in Seattle through the years. 
+                             As a result, I create an interactive line plot that gives the user the choice of 
+                             selecting which categories of crimes they want to compare."),
                           h1("Conclusion"),
+                          p("Based on my line graph visualization I can determine that the most prevalent crime
+                             category in Seattle is society crime. This makes sense because 9 out of the 15 top 
+                             crimes committed in Seattle are classified as society crimes. In addition, the lowest
+                            crime category was society."),
                           br()
+                 
                         )
                       )
                       
                       
 )
 
-page_six <- tabPanel("Modeling Crime",
+page_five <- tabPanel("Modeling Crime",
                      h1("Linear Regression on Total Crimes Committed Over Time"),
+                     p("The interactive scatterplot analyzes the correlation between the years and total crimes 
+                       committed for the selected type of crime. The crimes that are chosen are the top 15 crimes 
+                       in Seattle from the year 2008-2019. In addition, the black dots represent the number of 
+                       crimes occurrences per year. The red line represents a linear regression of the same 
+                       data."),
                      sidebarLayout(
                        sidebarPanel(
                          selectInput("reg",label = h3("Select Crime"),
@@ -188,7 +194,17 @@ page_six <- tabPanel("Modeling Crime",
                        mainPanel(
                          plotlyOutput("linear_graph"),
                          h1("Background"),
+                         p("While conducting research I was interested in how to potentially anticipate an increase
+                           or decrease in crimes for the following year. Creating a linear regression model can be
+                           beneficial in determining how police should utilize their resources. In addition, 
+                           learning about predictive analysis can become a tool to help decrease future crimes."),
                          h1("Conclusion"),
+                         p("Based on the results from the interactive linear regression model, I can determine 
+                            that majority of the top 15 crime occurrence have a positive correlation. This means 
+                            that we can expect an increase of crimes committed for that particular crime selected. 
+                            I also thought it was interesting how the crime type “bad checks” have a strong negative 
+                            correlation. I believe this is because society has adapted new forms of payment such as 
+                            online banking."),
                          br()
                        )
                      ))
@@ -201,9 +217,8 @@ page_six <- tabPanel("Modeling Crime",
 ui <- navbarPage(theme = shinytheme("sandstone"),
                  "Seattle Crime Analysis",
                  page_one,
-                 #page_two,
+                 page_two,
                  page_three,
                  page_four,
-                 page_five,
-                 page_six
+                 page_five
                  )

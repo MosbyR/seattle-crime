@@ -23,8 +23,8 @@ sever <- function(input, output) {
       alt ="a seattle picture"
     ))
   },deleteFile = FALSE)
-  
-  #####
+
+############################################################
   #output image
   output$police_precinct <-renderImage({
     return(list(
@@ -33,8 +33,7 @@ sever <- function(input, output) {
     ))
   },deleteFile = FALSE)
   
-  ###
-  
+###################################
   filtered_data <- filter_dates("Crime_Datav2.csv")
   
   output$crime <- renderPlot({
@@ -44,14 +43,11 @@ sever <- function(input, output) {
       group_by(Offense.Parent.Group,Year.Occurred) %>%
       summarise(total_crime =sum(total_crime)) %>%
 
-      #group_by(Year.Occurred,Crime.Subcategory,total_crime) %>%
       arrange(total_crime) %>%
       ungroup() %>%
       
       top_n(n=15, w= total_crime) %>%
     
-      #reorder(top_ten =reorder(Crime.Subcategory,total_crime)) %>%
-      
       #plots graph
       ggplot(aes(x = reorder(Offense.Parent.Group,total_crime),total_crime , fill = Offense.Parent.Group))+
       geom_bar(stat = "identity") +
@@ -62,16 +58,6 @@ sever <- function(input, output) {
       labs(title = paste0("Crime in Seattle for the year ", input$year))
   })
   
-  output$texting <- renderText({
-    "Please work!"
-  })
-  
-  
-  output$text_output <-renderUI({
-    text1 <- paste0(" fjkdhfdjdhfkjdh")
-    HTML(paste(text1))
-    
-})
 #####################################################################################  
   # plots the box plot 
   output$boxplot <- renderPlotly({
@@ -90,11 +76,6 @@ sever <- function(input, output) {
              yaxis = list(title = "Total Crime")) %>%
       layout(legend=list(title=list(text='<b> Precinct </b>')))
     
-    
-      #ggplot(boxplotcrime,aes(Precinct,y=total_crime, fill = Precinct))+
-        #geom_boxplot()+
-        #labs(title = paste0(input$crime, " crimes by Precinct")) +
-        #labs(y = "Total Crime")
   })
   
 ####################################################################################  
@@ -228,6 +209,3 @@ sever <- function(input, output) {
   })
   
 }
-
-
-
