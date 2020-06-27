@@ -24,6 +24,17 @@ sever <- function(input, output) {
     ))
   },deleteFile = FALSE)
   
+  #####
+  #output image
+  output$police_precinct <-renderImage({
+    return(list(
+      src="img/police_pre.png",
+      alt ="seattle map"
+    ))
+  },deleteFile = FALSE)
+  
+  ###
+  
   filtered_data <- filter_dates("Crime_Datav2.csv")
   
   output$crime <- renderPlot({
@@ -133,7 +144,7 @@ sever <- function(input, output) {
       scale_x_discrete(limits = c("Jan","Feb","Mar","April","May","June","July","Aug","Sept","Oct","Nov","Dec"))+
       theme(axis.text.x = element_text(angle = 30, hjust = 1))+
       labs(x = "Months", y="Total Crime")+
-      labs(title =paste0("Breakdown of Total Crimes Commited in ",input$neighborhood," Year ", input$year2))
+      labs(title =paste0("Total Crimes Commited by Month in ",input$neighborhood," Year ", input$year2))
     
     fib <- ggplotly(b)
     fib
