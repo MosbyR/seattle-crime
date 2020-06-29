@@ -1,0 +1,12 @@
+name: seattle-crime
+title: seattle-crime
+username:
+account: mosbyr
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2515500
+bundleId: 3327483
+url: https://mosbyr.shinyapps.io/seattle-crime/
+when: 1593395410.92157
+asMultiple: FALSE
+asStatic: FALSE
