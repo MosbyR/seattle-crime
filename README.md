@@ -6,7 +6,7 @@
 
 The goal of this project is to raise awareness ,increase transparency and create a platform that allows people to easily learn about how crime is affecting their community. Also, it is important for the public to be informed about how well the police are protecting their community. In addition, this web application can be used to help people make better informed decisions when deciding where to live. 
 
-Link to website: 
+Link to website: https://mosbyr.shinyapps.io/seattle-crime/
 
 
 ## Target Audience
